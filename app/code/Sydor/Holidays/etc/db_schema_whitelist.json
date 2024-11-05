@@ -1,0 +1,16 @@
+{
+    "holidays": {
+        "column": {
+            "entity_id": true,
+            "title": true,
+            "content": true,
+            "status": true,
+            "start_day": true,
+            "exact_day": true,
+            "end_day": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

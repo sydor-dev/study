@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Sydor\Holidays\Model\ResourceModel\Holidays\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">holidays</argument>
+            <argument name="resourceModel" xsi:type="string">Sydor\Holidays\Model\ResourceModel\Holidays</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="holidays_data_source" xsi:type="string">Sydor\Holidays\Model\ResourceModel\Holidays\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="holidays_product_price_plugin" type="Sydor\Holidays\Plugin\ProductPricePlugin"/>
+    </type>
+</config>

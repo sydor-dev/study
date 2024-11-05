@@ -1,0 +1,20 @@
+<?php
+/** @var \Sydor\Holidays\Block\ActiveHolidays $block */
+$holidays = $block->getActiveHolidays();
+?>
+
+<div id="active-holidays">
+    <?php foreach ($holidays as $holiday): ?>
+    <div class="holidays-item">
+        <h2><?php echo $holiday->getTitle(); ?></h2>
+        <h3><?php echo $holiday->getContent(); ?></h3>
+    </div>
+    <?php endforeach; ?>
+</div>
+<script type="text/x-magento-init">
+    {
+        "#active-holidays": {
+            "Magento_Ui/js/core/app": <?= $block->getJsLayout() ?>
+    }
+}
+</script>

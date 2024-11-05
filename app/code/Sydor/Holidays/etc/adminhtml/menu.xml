@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.
+xsd">
+    <menu>
+        <add id="Sydor_Holidays::holidays" translate="title" title="Holidays" module="Sydor_Holidays" sortOrder="10" resource="Sydor_Holidays::holidays"/>
+        <add id="Sydor_Holidays::manage" translate="title" title="Manage" module="Sydor_Holidays" sortOrder="10" resource="Sydor_Holidays::manage" parent="Sydor_Holidays::holidays" action="holidays/manage/index"/>
+    </menu>
+</config>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">holidays_editing.holidays_editing_data_source</item>
+            <item name="deps" xsi:type="string">holidays_editing.holidays_editing_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Holidays Data</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">holidays_editing</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <dataSource name="holidays_editing_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <dataProvider class="Sydor\Holidays\Model\Holidays\DataProvider" name="holidays_editing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="holidays_data">
+        <settings>
+            <label translate="true">Holidays Data</label>
+        </settings>
+        <field name="entity_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">holidays</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+            </settings>
+        </field>
+        <field name="title" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">holidays</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Title</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="content" formElement="textarea">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">holidays</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Content</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="status">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">holidays</item>
+                    <item name="label" xsi:type="string" translate="true">Enable Holiday</item>
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Enable Holiday</label>
+            </settings>
+        </field>
+        <field name="start_day" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">holidays</item>
+                    <item name="label" xsi:type="string" translate="true">Start Day</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="options" xsi:type="array">
+                        <item name="dateFormat" xsi:type="string">MM/dd/yyyy</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>date</dataType>
+            </settings>
+        </field>
+        <field name="exact_day" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">holidays</item>
+                    <item name="label" xsi:type="string" translate="true">Exact Day</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="options" xsi:type="array">
+                        <item name="dateFormat" xsi:type="string">MM/dd/yyyy</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>date</dataType>
+            </settings>
+        </field>
+
+        <field name="end_day" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">holidays</item>
+                    <item name="label" xsi:type="string" translate="true">End Day</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="options" xsi:type="array">
+                        <item name="dateFormat" xsi:type="string">MM/dd/yyyy</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>date</dataType>
+            </settings>
+        </field>
+    </fieldset>
+</form>
