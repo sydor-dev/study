@@ -1,0 +1,40 @@
+& when (@media-common = true) {
+    #shipping-plan {
+        overflow: auto;
+        margin-top: -20px;
+    }
+    #shipping-plan {
+        button {
+            margin-top: 1em;
+        }
+        .delete{
+            color: @color-red12;
+            cursor: pointer;
+        }
+        .message-response {
+            margin-top: 1em;
+        }
+
+        .box-configurations {
+            width: 700px;
+            overflow-x: auto;
+
+            input {
+                width: 60px;
+            }
+            input[aria-invalid="true"] {
+                border: 1px solid @color-red12;
+            }
+            label.error {
+                position: absolute;
+                width: 100%;
+                display: block;
+                margin-top: 5px;
+                font-size: 1.2rem;
+                line-height: 1.2rem;
+                font-weight: 400;
+                color: @color-red12;
+            }
+        }
+    }
+}
