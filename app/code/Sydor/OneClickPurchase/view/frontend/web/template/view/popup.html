@@ -1,0 +1,47 @@
+<div id="one-click-purchase-popup">
+    <div class="popup-header">
+        <h2 data-bind="i18n:'Buy in 1 click'"></h2>
+        <p data-bind="i18n:'Enter your phone number and we will call you to recognize order details.'"></p>
+    </div>
+    <div class="popup-body">
+        <form id="one-click-purchase-form" data-mage-init='{"validation":{}}' data-bind="submit: submitPurchase">
+            <label for="phone" data-bind="i18n:'Buy in 1 click'"><?php echo __('Phone Number'); ?></label>
+            <input type="text" id="phone" name="phone" data-validate="{required:true, 'validate-number':true, 'min-length': 5, 'max-length': 15}" data-bind="
+                    value: phoneNumber,
+                    valueUpdate: 'keyup',
+                    attr: {
+                        placeholder: '',
+                        'aria-required': true,
+                        'aria-invalid': false
+                    }"/>
+            <div class="mage-error" id="phone-error"></div>
+            <label for="username" data-bind="i18n:'Buy in 1 click'"><?php echo __('User Name'); ?></label>
+            <input type="text" id="username" name="username" data-bind="
+                    value: userName,
+                    valueUpdate: 'keyup',
+                    attr: {
+                        placeholder: '',
+                        'aria-required': true,
+                        'aria-invalid': false
+                    }"/>
+            <div class="mage-error" id="username-error"></div>
+            <label for="email" data-bind="i18n:'Email'"></label>
+            <input type="email" id="email" name="email" data-bind="
+                    value: email,
+                    valueUpdate: 'keyup',
+                    attr: {
+                        placeholder: '',
+                        'aria-required': true,
+                        'aria-invalid': false
+                    }"/>
+
+            <div class="mage-error" id="email-error"></div>
+            <input type="hidden" name="product_id" data-bind="value: productId"/>
+            <div class="popup-footer">
+                <button class="submit" type="button" data-bind="click: submitPurchase, i18n:'Submit'"></button>
+                <button class="cancel" type="button" data-bind="click: closePopup, i18n:'Cancel'"></button>
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,60 @@
+<div id="one-click-purchase" data-bind="scope: 'one-click-purchase'">
+    <button type="button" data-bind="click: openPopup, attr:{id: 'one-click-purchase-button'}" class="action primary"><?php echo __('Buy in 1 click'); ?></button>
+    <div id="one-click-purchase-popup" style="display:none;">
+        <div class="popup-header">
+            <h2><?php echo __('Buy in 1 click'); ?></h2>
+            <p><?php echo __('Enter your phone number and we will call you to recognize order details.'); ?></p>
+        </div>
+        <div class="popup-body">
+            <form id="one-click-purchase-form" data-mage-init='{"validation":{}}' data-bind="scope: 'one-click-purchase', submit: submitPurchase">
+                <label for="phone"><?php echo __('Phone Number'); ?></label>
+                <input type="text" class="minimum-length-5 maximum-length-15" id="phone" name="phone" data-validate="{required:true, 'validate-number':true, 'validate-length':true, 'pattern':'^\\+380\\d{9}$|^0\\d{2}\\s?\\d{3}\\s?\\d{4}$'}" data-bind="
+                    value: phoneNumber,
+                    valueUpdate: 'keyup',
+                    attr: {
+                        placeholder: '',
+                        'aria-required': true,
+                        'aria-invalid': false
+                    }"/>
+
+                <div class="mage-error" id="phone-error"></div>
+                <label for="username"><?php echo __('User Name'); ?></label>
+                <input type="text" id="username" name="username" data-validate="{required:true, 'validate-data':true}" data-bind="
+                    value: userName,
+                    valueUpdate: 'keyup',
+                    attr: {
+                        placeholder: '',
+                        'aria-required': true,
+                        'aria-invalid': false
+                    }"/>
+
+                <div class="mage-error" id="username-error"></div>
+                <label for="email"><?php echo __('Email'); ?></label>
+                <input type="email" id="email" name="email" data-validate="{'validate-email':true}" data-bind="
+                    value: email,
+                    valueUpdate: 'keyup',
+                    attr: {
+                        placeholder: '',
+                        'aria-required': true,
+                        'aria-invalid': false
+                    }"/>
+
+                <div class="mage-error" id="email-error"></div>
+                <input type="hidden" name="product_id" value="<?php echo $block->getProduct()->getId(); ?>"/>
+                <input type="hidden" name="form_key" value="<?php echo $block->getFormKey(); ?>" />
+                <div class="popup-footer">
+                    <button class="submit" type="button" data-bind="click: submitPurchase"><?php echo __('Submit'); ?></button>
+                    <button class="cancel" type="button" data-bind="click: closePopup"><?php echo __('Cancel'); ?></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": <?= $block->getJsLayout() ?>
+    }
+}
+</script>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.main">
+            <block class="Sydor\OneClickPurchase\Block\OneClickPurchase" name="product.one.click.purchase" template="Sydor_OneClickPurchase::one-click-purchase.phtml" after="product.info">
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="components" xsi:type="array">
+                            <item name="one-click-purchase" xsi:type="array">
+                                <item name="component" xsi:type="string">Sydor_OneClickPurchase/js/view/one-click-purchase</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
