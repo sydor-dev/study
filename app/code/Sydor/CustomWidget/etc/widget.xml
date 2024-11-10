@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="custom_widget" class="Sydor\CustomWidget\Block\Widget\CustomWidget">
+        <label>Display Product By SKU</label>
+        <description></description>
+        <parameters>
+            <parameter name="sku" xsi:type="block" required="true">
+                <label translate="true">SKU</label>
+                <block class="Sydor\CustomWidget\Block\Widget\Sku"/>
+            </parameter>
+            <parameter name="description" xsi:type="text" visible="true" required="true">
+                <label translate="true">Description</label>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

@@ -1,0 +1,21 @@
+<div class="sku-field" id="sku-field" data-bind="scope: 'skuField'">
+    <label for="sku"><?php echo __('Enter SKU'); ?></label>
+    <input type="text" id="sku" name="sku" class="admin__control-text" data-bind="value: sku, valueUpdate: 'input', event: {keyup: delayedSearch}" placeholder="<?php echo __('Enter SKU'); ?>" autocomplete="off"/>
+    <ul data-bind="foreach: suggestions, visible: suggestions.length > 0">
+        <li data-bind="text: name, click: selectSku"></li>
+    </ul>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "skuField": {
+                        "component": "Sydor_CustomWidget/js/sku-search"
+                    }
+                }
+            }
+        }
+    }
+</script>

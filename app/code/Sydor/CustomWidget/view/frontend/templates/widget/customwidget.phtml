@@ -1,0 +1,21 @@
+<?php /* @param $this Sydor\CustomWidget\Block\Widget\CustomWidget */ ?>
+
+<div class="custom-widget">
+    <?php $product = $this->getProductBySKU(); ?>
+    <?php if ($product): ?>
+        <div class="product-item">
+            <a href="<?php echo $this->escapeUrl($product->getProductUrl()); ?>" title="<?php echo $this->escapeHtml($product->getName()); ?>">
+                <?php
+                // Отримуємо URL зображення
+                $imageUrl = $product->getData('image') ? $this->getImageUrl($product->getData('image')) : null;
+                ?>
+                <?php if ($imageUrl): ?>
+                    <img src="<?php echo $this->escapeUrl($imageUrl); ?>" alt="<?php echo $this->escapeHtml($product->getName()); ?>" />
+                <?php endif; ?>
+                <strong><?php echo $this->escapeHtml($this->getDescription()); ?></strong>
+            </a>
+        </div>
+    <?php else: ?>
+        <div>No product found for the given SKU.</div>
+    <?php endif; ?>
+</div>
