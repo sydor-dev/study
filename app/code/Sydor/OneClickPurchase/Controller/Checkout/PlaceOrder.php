@@ -12,6 +12,8 @@ use Magento\Framework\Data\Form\FormKey\Validator as FormKeyValidator;
 use Sydor\OneClickPurchase\Service\OrderService;
 use Sydor\OneClickPurchase\Service\ProductService;
 use Sydor\OneClickPurchase\Service\AddressService;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 class PlaceOrder extends Action
 {
