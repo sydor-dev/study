@@ -1,0 +1,11 @@
+<?php /** @var \Magento\Framework\View\Element\Template $block */
+$soldProducts = $block->getProductListHtml(5);
+
+if ($block->isWidgetEnabled() && empty($soldProducts)) { ?>
+    <p><?php echo __('No products sold in this category today.'); ?></p>
+ <?php } else if ($block->isWidgetEnabled()) { ?>
+<div class="sold-today-widget">
+    <h2><?php echo __('Sold today'); ?></h2>
+    <?php echo $soldProducts; ?>
+</div>
+<?php } ?>

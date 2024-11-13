@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="sold_today_widget" class="Sydor\SoldTodayWidget\Block\Widget\SoldToday">
+        <label>Sold Today Products</label>
+        <description></description>
+        <parameters>
+            <parameter name="enabled" xsi:type="select" visible="true" required="true">
+                <label translate="true">Enabled</label>
+                <options>
+                    <option name="yes" value="1">
+                        <label translate="true">Yes</label>
+                    </option>
+                    <option name="no" value="0">
+                        <label translate="true">No</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>
