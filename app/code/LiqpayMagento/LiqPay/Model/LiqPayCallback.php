@@ -74,14 +74,20 @@ class LiqPayCallback implements LiqPayCallbackInterface
         $this->_transaction = $transaction;
         $this->_helper = $helper;
         $this->_request = $request;
+        $this->resultRedirectFactory = $resultRedirectFactory;
     }
 
+    /**
+     * @return array
+     */
     public function callback()
     {
         $post = $this->_request->getParams();
+
         if (!(isset($post['data']) && isset($post['signature']))) {
-            $this->_helper->getLogger()->error(__('In the response from LiqPay server there are no POST parameters "data" and "signature"'));
-            return null;
+            $message = __('In the response from LiqPay server there are no POST parameters "data" and "signature"');
+            $this->_helper->getLogger()->error($message);
+            return ['status' => 'error', 'message' => $message];
         }
 
         $data = $post['data'];
@@ -99,15 +105,17 @@ class LiqPayCallback implements LiqPayCallbackInterface
         try {
             $order = $this->getRealOrder($status, $orderId);
             if (!($order && $order->getId() && $this->_helper->checkOrderIsLiqPayPayment($order))) {
-                return null;
+                $message = __('No order found for current query.');
+                return ['status' => 'error', 'message' => $message];
             }
 
         // ALWAYS CHECK signature field from Liqpay server!!!!
         // DON'T delete this block, be careful of fraud!!!
             if (!$this->_helper->securityOrderCheck($data, $receivedPublicKey, $receivedSignature)) {
-                $order->addStatusHistoryComment(__('LiqPay security check failed!'));
+                $message = __('LiqPay security check failed!');
+                $order->addStatusHistoryComment(__($message));
                 $this->_orderRepository->save($order);
-                return null;
+                return ['status' => 'error', 'message' => $message];
             }
 
             $historyMessage = [];
@@ -131,7 +139,7 @@ class LiqPayCallback implements LiqPayCallbackInterface
                         } else {
                             $historyMessage[] = __('Invoice #%1 created.', $invoice->getIncrementId());
                         }
-                        $state = \Magento\Sales\Model\Order::STATE_PROCESSING;
+                        $state = \Magento\Sales\Model\Order::STATE_COMPLETE;
                     } else {
                         $historyMessage[] = __('Error during creation of invoice.');
                     }
@@ -185,7 +193,22 @@ class LiqPayCallback implements LiqPayCallbackInterface
         } catch (\Exception $e) {
             $this->_helper->getLogger()->critical($e);
         }
-        return null;
+
+        return $this->getSuccessJson($order, $transactionId, $state);
+    }
+
+    protected function getSuccessJson($order, $transactionId, $status = null)
+    {
+        return [
+            'status' => 'success',
+            'message' => 'Payment processed successfully',
+            'order_id' => $order->getIncrementId(),
+            'transaction_id' => $transactionId,
+            'order_status' => $status,
+            'order_amount' => $order->getGrandTotal(),
+            'currency' => $order->getOrderCurrencyCode(),
+            'customer_email' => $order->getCustomerEmail()
+        ];
     }
 
     protected function getRealOrder($status, $orderId)

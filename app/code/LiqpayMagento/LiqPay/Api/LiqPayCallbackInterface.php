@@ -15,7 +15,7 @@ interface LiqPayCallbackInterface
 {
     /**
      * @api
-     * @return null
+     * @return array
      */
     public function callback();
 }

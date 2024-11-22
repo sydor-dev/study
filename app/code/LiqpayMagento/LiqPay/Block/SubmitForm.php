@@ -15,7 +15,6 @@ use Magento\Sales\Model\Order;
 use LiqpayMagento\LiqPay\Sdk\LiqPay;
 use LiqpayMagento\LiqPay\Helper\Data as Helper;
 
-
 class SubmitForm extends Template
 {
     protected $_order = null;
@@ -61,6 +60,9 @@ class SubmitForm extends Template
 
     protected function _toHtml()
     {
+
+        $callbackUrl = $this->getUrl() . 'rest/V1/liqpay/callback';
+
         $order = $this->getOrder();
         $html = $this->_liqPay->cnb_form(array(
             'action' => 'pay',
@@ -68,7 +70,9 @@ class SubmitForm extends Template
             'currency' => $order->getOrderCurrencyCode(),
             'description' => $this->_helper->getLiqPayDescription($order),
             'order_id' => $order->getIncrementId(),
+            'result_url' => $callbackUrl
         ));
+
         return $html;
     }
 }
