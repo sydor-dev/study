@@ -1,0 +1,11 @@
+<?php
+$uahPrice = $block->getCurrencyPrice('uah');
+$euroPrice = $block->getCurrencyPrice('eur');
+?>
+
+<h3 style="font-weight: 700; font-size: 1.5em; color: #575757; text-decoration: underline;"><?php echo __('Multi Currency Prices'); ?></h3>
+<?php if ($uahPrice) { ?>
+<span class="multicurrency-price"><?php echo $block->escapeHtml($uahPrice); ?> UAH</span>
+<?php } ?><?php if ($uahPrice) { ?>
+<span class="multicurrency-price"><?php echo $block->escapeHtml($euroPrice); ?> EUR</span>
+<?php } ?>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Sydor_MultiCurrency::css/style.css"/>
+    </head>
+    <body>
+        <referenceContainer name="product.info.main">
+            <block class="Sydor\MultiCurrency\Block\Product\MultiCurrencyView" name="product.multicurrency.price"
+                template="Sydor_MultiCurrency::multicurrency-price.phtml"
+                after="product.info.price"
+                before="product.price.tier">
+            </block>
+        </referenceContainer>
+    </body>
+</page>

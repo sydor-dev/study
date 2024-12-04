@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="multicurrency" translate="label" sortOrder="1000">
+            <label>Multi Currency</label>
+        </tab>
+        <section id="multicurrency" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Multi Currency</label>
+            <tab>multicurrency</tab>
+            <resource>Sydor_MultiCurrency::multicurrency</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" type="select" translate="label,comment,tooltip" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>multicurrency/general/enabled</config_path>
+                </field>
+                <field id="use_system_values" type="select" translate="label,comment,tooltip" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use System Values</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>multicurrency/general/use_system_values</config_path>
+                </field>
+                <field id="enable_uah_currency" type="select" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable UAH</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <config_path>multicurrency/general/enable_uah_currency</config_path>
+                </field>
+                <field id="uah_currency_value" type="text" translate="label" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>UAH currency value</label>
+                    <validate>validate-number</validate>
+                    <config_path>multicurrency/general/uah_currency_value</config_path>
+                    <depends>
+                        <field id="enable_uah_currency">1</field>
+                    </depends>
+                </field>
+                <field id="enable_eur_currency" type="select" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable EURO</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <config_path>multicurrency/general/enable_eur_currency</config_path>
+                </field>
+                <field id="eur_currency_value" type="text" translate="label" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>EURO currency value</label>
+                    <validate>validate-number</validate>
+                    <config_path>multicurrency/general/eur_currency_value</config_path>
+                    <depends>
+                        <field id="enable_eur_currency">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
