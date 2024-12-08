@@ -1,0 +1,47 @@
+<?php /**  @var \Sydor\IpLocation\Block\IpLocation $block */ ?>
+
+<div id="ip-location" data-bind="scope: 'ipLocation'">
+    <div id="location-icon" data-bind="click: showTarget('#location-selector')">
+        <img src="<?= $block->getViewFileUrl("Sydor_IpLocation::images/geopoint.svg") ?>" alt="geopoint.svg"/>
+        <span data-bind="text: locationCity() ?? ''"></span>
+    </div>
+    <div id="location-selector" style="display: none;">
+        <div class="location-selector-close" data-bind="click: hideTarget('#location-selector')">X</div>
+        <div class="location-selector-title" data-bind="i18n: locationQuestion()"></div>
+        <div class="location-selector-actions">
+            <button type="button" name="confirm-city" data-bind="click: hideTarget('#location-selector')"><?= __('Yes') ?></button>
+            <button type="button" name="another-city" data-bind="click: function() { showTarget('#select-city-manually'); }"><?= __('Choose Another') ?></button>
+        </div>
+        <div id="select-city-manually" style="display: none;">
+            <div class="popup-overlay" data-bind="click: hideTarget('#select-city-manually')"></div>
+            <div id="location-selector-manually" class="popup-body">
+                <div class="location-selector-close" data-bind="click: hideTarget('#select-city-manually')">X</div>
+                <h2><?= __('Select Your City') ?></h2>
+                <span><?= __('Or enter settlement') ?></span>
+                <div class="autocomplete-container">
+                    <input type="text" name="location-city" data-bind="value: inputCity, valueUpdate: 'input'"/>
+                    <ul class="autocomplete-cities" data-bind="foreach: citiesAutocomplete, visible: citiesAutocomplete().length">
+                        <li class="autocomplete-item" data-bind="text: $data, click: $parent.selectCityAutocomplete.bind($parent)"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/x-magento-init">
+    {
+        "#ip-location": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "ipLocation": {
+                        "component": "Sydor_IpLocation/js/ip-location",
+                        "config": {
+                            "configApiKey": "<?php echo $block->getIpLocationApiKey(); ?>",
+                        "userIp": "<?php echo $block->getUserIp(); ?>"
+                    }
+                }
+            }
+        }
+    }
+}
+</script>
