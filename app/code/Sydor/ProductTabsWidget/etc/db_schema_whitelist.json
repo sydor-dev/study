@@ -1,0 +1,17 @@
+[
+    {
+        "table": "product_tabs_widget",
+        "columns": [
+            "entity_id",
+            "title",
+            "status",
+            "show_pager",
+            "products_per_page",
+            "products_count",
+            "conditions",
+            "properties",
+            "created_at",
+            "updated_at"
+        ]
+    }
+]

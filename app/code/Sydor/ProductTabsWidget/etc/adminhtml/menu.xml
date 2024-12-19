@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.
+xsd">
+    <menu>
+        <add id="Sydor_ProductTabsWidget::widgets" translate="title" title="ProductTabsWidget" module="Sydor_ProductTabsWidget" sortOrder="10" resource="Sydor_ProductTabsWidget::widgets"/>
+        <add id="Sydor_ProductTabsWidget::manage" translate="title" title="Manage" module="Sydor_ProductTabsWidget" sortOrder="10" resource="Sydor_ProductTabsWidget::manage" parent="Sydor_ProductTabsWidget::widgets" action="widgets/manage/index"/>
+    </menu>
+</config>

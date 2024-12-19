@@ -1,0 +1,42 @@
+<?php
+use Magento\Framework\View\Helper\SecureHtmlRenderer;
+use Magento\Framework\Escaper;
+
+/** @var \Sydor\ProductTabsWidget\Block\Conditions $block */
+/** @var SecureHtmlRenderer $secureRenderer */
+/** @var Escaper $escaper */
+
+$element = $block->getData('element');
+$renderedConditions = $block->getData('rendered_conditions');
+
+$fieldId = $element->getHtmlContainerId() ?
+    ' id="' . $escaper->escapeHtmlAttr($element->getHtmlContainerId()) . '"' : '';
+$fieldClass = 'field admin__field field-' . $escaper->escapeHtmlAttr((string)$element->getId()) . ' '
+    . $escaper->escapeHtmlAttr($element->getCssClass());
+$fieldClass .= $element->getRequired() ? ' required' : '';
+$fieldAttributes = $fieldId . ' class="' . $fieldClass . '" '
+    . $block->getUiId('form-field', $escaper->escapeHtmlAttr((string)$element->getId()));
+?>
+<div<?= /* @noEscape */ $fieldAttributes ?>>
+    <?= $element->getLabelHtml() ?>
+    <div class="control admin__field-control">
+        <div class="rule-tree">
+            <div class="rule-tree-wrapper">
+                <?= /* @noEscape */ $renderedConditions ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php $scriptString = <<<script
+    require([
+        "Magento_Rule/rules",
+        "prototype"
+    ], function(VarienRulesForm){
+        window.{$escaper->escapeJs($block->getHtmlId())} = new VarienRulesForm(
+        '{$escaper->escapeJs($block->getHtmlId())}',
+         '{$escaper->escapeUrl($block->getNewChildUrl())}');
+    });
+script;
+?>
+<?= /* @noEscape */ $secureRenderer->renderTag('script', [], $scriptString, false) ?>

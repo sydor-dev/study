@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Sydor\ProductTabsWidget\Model\ResourceModel\ProductTabsWidget\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">product_tabs_widget</argument>
+            <argument name="resourceModel" xsi:type="string">Sydor\ProductTabsWidget\Model\ResourceModel\ProductTabsWidget</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="widgets_data_source" xsi:type="string">Sydor\ProductTabsWidget\Model\ResourceModel\ProductTabsWidget\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
